@@ -749,10 +749,11 @@
         border-bottom: 1px solid rgba(0,0,0,0.06);
       }
       .nav-toggle { display: flex; }
+      .hero h1 { font-size: clamp(36px, 8vw, 64px); }
+      .hero-meta { flex-direction: column; align-items: flex-start; gap: 12px; }
       .stats-row { flex-wrap: wrap; }
       .stat-item { flex: 0 0 50%; margin-bottom: 32px; }
-      .stat-item:nth-child(odd)::before { display: none; }
-      .stat-item:nth-child(3)::before, .stat-item:nth-child(4)::before { display: none; }
+      .stat-item:nth-child(1)::before, .stat-item:nth-child(3)::before { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .audience-grid { grid-template-columns: 1fr; }
       .why-grid { grid-template-columns: 1fr; }
@@ -760,15 +761,22 @@
       .programme-time { padding: 24px 32px; }
       .cta-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; }
+      .footer-links { gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
     @media (max-width: 480px) {
-      .stat-item { flex: 0 0 100%; }
+      .stat-item { flex: 0 0 100%; margin-bottom: 24px; }
       .stat-item + .stat-item::before { display: none; }
+      .stat-value { font-size: clamp(36px, 10vw, 56px); }
       .hero-buttons { flex-direction: column; }
-      .hero-buttons a { text-align: center; justify-content: center; }
-      section { padding: 80px 0; }
+      .hero-buttons a { text-align: center; justify-content: center; width: 100%; }
+      .section-title { font-size: clamp(28px, 7vw, 48px); }
+      section { padding: 64px 0; }
       .container { padding: 0 20px; }
+      .audience-card { padding: 28px; }
+      .why-card { padding: 32px 28px; }
+      .cta-card { padding: 32px 28px; }
+      .programme-content { padding: 28px; }
     }
   </style>
 </head>
