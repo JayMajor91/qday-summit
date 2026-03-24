@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q-Day Summit — The Quantum Threat to Crypto Is Already Here</title>
+  <meta name="description" content="A curated, single-day gathering at the intersection of quantum computing and blockchain infrastructure. April 25, 2026 — Johor Bahru, Malaysia.">
+  <meta property="og:title" content="Q-Day Summit — April 25, 2026">
+  <meta property="og:description" content="The quantum threat to crypto is already here. 60–80 curated delegates. One day. Johor Bahru, Malaysia.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #E85D2A;
+      --orange-light: #FF7A45;
+      --purple: #8B5CF6;
+      --purple-deep: #6D28D9;
+      --magenta: #D946EF;
+      --pink: #F0ABFC;
+      --pink-soft: #FDE4FF;
+      --cream: #FAF5F0;
+      --white: #FFFFFF;
+      --black: #0A0A0A;
+      --gray-900: #1A1A1E;
+      --gray-800: #2A2A2E;
+      --gray-600: #6B6B73;
+      --gray-400: #A0A0A8;
+      --font-sans: 'Space Grotesk', -apple-system, 'Helvetica Neue', sans-serif;
+      --font-mono: 'Space Mono', 'SF Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--black);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ====== UTILITY ====== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* ====== NAV ====== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(10, 10, 10, 0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--orange) !important;
+      color: var(--white) !important;
+      padding: 10px 20px;
+      border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--orange-light) !important; }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: 0.2s;
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 20%, rgba(139, 92, 246, 0.35), transparent),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(232, 93, 42, 0.4), transparent),
+        radial-gradient(ellipse 50% 40% at 90% 70%, rgba(217, 70, 239, 0.25), transparent);
+      animation: heroShift 12s ease-in-out infinite alternate;
+    }
+    @keyframes heroShift {
+      0% { opacity: 0.8; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: orbFloat 8s ease-in-out infinite alternate;
+    }
+    .hero-orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--orange) 0%, transparent 70%);
+      top: -10%; right: -5%;
+      opacity: 0.5;
+    }
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--purple) 0%, transparent 70%);
+      bottom: -5%; left: 10%;
+      opacity: 0.4;
+      animation-delay: -3s;
+    }
+    .hero-orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, var(--magenta) 0%, transparent 70%);
+      top: 30%; left: 50%;
+      opacity: 0.3;
+      animation-delay: -5s;
+    }
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(30px, -20px); }
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero .container { position: relative; z-index: 2; padding-top: 120px; }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .hero-date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: var(--orange);
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border: 1px solid rgba(232, 93, 42, 0.4);
+      border-radius: 2px;
+    }
+    .hero-venue {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--gray-400);
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      max-width: 900px;
+      margin-bottom: 32px;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, var(--orange), var(--magenta), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--gray-400);
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--orange), #D94E1A);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(232, 93, 42, 0.4);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 500;
+      border: 1px solid var(--gray-800);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--gray-600);
+      background: rgba(255,255,255,0.04);
+    }
+    .btn-secondary .arrow {
+      transition: transform 0.2s;
+    }
+    .btn-secondary:hover .arrow { transform: translateX(4px); }
+
+    /* ====== TICKER ====== */
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 0;
+      background: rgba(255,255,255,0.02);
+    }
+    .ticker-track {
+      display: flex;
+      animation: ticker 30s linear infinite;
+      width: max-content;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 48px;
+      white-space: nowrap;
+    }
+    .ticker-value {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--orange), var(--magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ticker-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--gray-400);
+      text-transform: uppercase;
+    }
+    .ticker-sep {
+      flex-shrink: 0;
+      width: 4px; height: 4px;
+      background: var(--gray-600);
+      border-radius: 50%;
+    }
+
+    /* ====== SECTIONS ====== */
+    section { padding: 120px 0; position: relative; }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .section-desc {
+      font-size: 18px;
+      color: var(--gray-400);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ====== STATS ====== */
+    .stats {
+      background: var(--black);
+      padding: 100px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--gray-800);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .stat-card {
+      background: var(--gray-900);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--magenta), var(--purple));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .stat-card:hover::before { opacity: 1; }
+    .stat-value {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: var(--gray-400);
+      line-height: 1.5;
+    }
+
+    /* ====== ABOUT ====== */
+    .about {
+      background: var(--cream);
+      color: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .about::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232, 93, 42, 0.15), rgba(217, 70, 239, 0.1), transparent);
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+    .about .section-num { color: var(--orange); }
+    .about .section-title { color: var(--black); }
+    .about .section-desc { color: #555; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 64px;
+    }
+    .about-highlight {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+    .about-highlight span {
+      background: linear-gradient(135deg, var(--orange), var(--magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .about-details { display: flex; flex-direction: column; gap: 24px; }
+    .about-detail {
+      padding: 24px;
+      border-left: 3px solid var(--orange);
+      background: rgba(232, 93, 42, 0.04);
+      border-radius: 0 8px 8px 0;
+    }
+    .about-detail-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .about-detail p { font-size: 15px; color: #555; line-height: 1.5; }
+
+    /* ====== AUDIENCE ====== */
+    .audience { background: var(--black); }
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+      background: var(--gray-800);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .audience-card {
+      background: var(--gray-900);
+      padding: 40px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .audience-card:hover { background: #1E1E22; }
+    .audience-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, rgba(232, 93, 42, 0.15), rgba(139, 92, 246, 0.15));
+    }
+    .audience-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .audience-card p {
+      font-size: 14px;
+      color: var(--gray-400);
+      line-height: 1.5;
+    }
+
+    /* ====== WHY ATTEND — GRADIENT SECTION ====== */
+    .why-attend {
+      background: linear-gradient(180deg, var(--black) 0%, #1A0A2E 50%, var(--black) 100%);
+      position: relative;
+    }
+    .why-attend::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 80% 30%, rgba(139, 92, 246, 0.2), transparent),
+        radial-gradient(ellipse 40% 30% at 20% 70%, rgba(232, 93, 42, 0.15), transparent);
+    }
+    .why-attend .container { position: relative; z-index: 1; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .why-card {
+      padding: 48px 40px;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      transition: background 0.2s;
+    }
+    .why-card:hover { background: rgba(255,255,255,0.06); }
+    .why-num {
+      font-family: var(--font-mono);
+      font-size: 48px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--orange), var(--magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .why-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .why-card p {
+      font-size: 15px;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+
+    /* ====== PROGRAMME ====== */
+    .programme {
+      background: var(--cream);
+      color: var(--black);
+    }
+    .programme .section-num { color: var(--orange); }
+    .programme .section-title { color: var(--black); }
+    .programme-list {
+      margin-top: 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .programme-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .programme-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+    .programme-time {
+      padding: 40px 32px;
+      background: linear-gradient(135deg, var(--orange), var(--magenta));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .programme-time .time-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 4px;
+    }
+    .programme-time .time-format {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .programme-content { padding: 40px; }
+    .programme-content .prog-type {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .programme-content h3 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+    .programme-content p {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ====== CTA ====== */
+    .cta-section {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(232, 93, 42, 0.2), transparent),
+        radial-gradient(ellipse 40% 40% at 30% 60%, rgba(139, 92, 246, 0.15), transparent),
+        radial-gradient(ellipse 40% 40% at 70% 40%, rgba(217, 70, 239, 0.1), transparent);
+    }
+    .cta-section .container { position: relative; z-index: 1; }
+    .cta-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .cta-header .section-title { max-width: 600px; margin: 0 auto 16px; }
+    .cta-header p { color: var(--gray-400); font-size: 18px; }
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .cta-card {
+      padding: 48px 40px;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s;
+    }
+    .cta-card:hover { background: rgba(255,255,255,0.06); }
+    .cta-card-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+    .cta-card h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .cta-card p {
+      font-size: 15px;
+      color: var(--gray-400);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      flex: 1;
+    }
+    .cta-card .btn-primary { justify-content: center; font-size: 14px; padding: 14px 24px; }
+
+    /* ====== FOOTER ====== */
+    footer {
+      padding: 64px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: var(--black);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 48px;
+    }
+    .footer-brand p {
+      color: var(--gray-600);
+      font-size: 14px;
+      margin-top: 12px;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+    .footer-links { display: flex; gap: 48px; }
+    .footer-col h4 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+    .footer-bottom a { color: var(--orange); text-decoration: none; }
+
+    /* ====== SCROLL ANIMATIONS ====== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10,10,10,0.95);
+        backdrop-filter: blur(20px);
+        padding: 24px 32px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .nav-toggle { display: flex; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .programme-item { grid-template-columns: 1fr; }
+      .programme-time { padding: 24px 32px; }
+      .cta-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons a { text-align: center; justify-content: center; }
+      section { padding: 80px 0; }
+      .container { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-logo">Quantus<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#audience">Attendees</a>
+        <a href="#why">Why Attend</a>
+        <a href="#programme">Programme</a>
+        <a href="#register" class="nav-cta">Register Interest</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-gradient"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-meta fade-up">
+        <div class="hero-date">25 April 2026</div>
+        <div class="hero-venue">Johor Bahru, Malaysia</div>
+      </div>
+      <h1 class="fade-up">The quantum threat to crypto is <span class="gradient-text">already here.</span></h1>
+      <p class="hero-sub fade-up">A curated, single-day gathering for practitioners building at the intersection of quantum computing and blockchain infrastructure.</p>
+      <div class="hero-buttons fade-up">
+        <a href="#register" class="btn-primary">Register Interest <span>&rarr;</span></a>
+        <a href="#about" class="btn-secondary">Learn More <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="ticker-value">4M+ BTC</span><span class="ticker-label">Exposed in P2PK addresses</span></div>
+      <div class="ticker-sep"></div>
+      <div class="ticker-item"><span class="ticker-value">$2.6T+</span><span class="ticker-label">Crypto market at stake</span></div>
+      <div class="ticker-sep"></div>
+      <div class="ticker-item"><span class="ticker-value">~2031</span><span class="ticker-label">Projected CRQC window</span></div>
+      <div class="ticker-sep"></div>
+      <div class="ticker-item"><span class="ticker-value">60–80</span><span class="ticker-label">Curated delegates</span></div>
+      <div class="ticker-sep"></div>
+      <div class="ticker-item"><span class="ticker-value">1,000+</span><span class="ticker-label">Authority paper recipients</span></div>
+      <div class="ticker-sep"></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="ticker-item"><span class="ticker-value">4M+ BTC</span><span class="ticker-label">Exposed in P2PK addresses</span></div>
+      <div class="ticker-sep"></div>
+      <div class="ticker-item"><span class="ticker-value">$2.6T+</span><span class="ticker-label">Crypto market at stake</span></div>
+      <div class="ticker-sep"></div>
+      <div class="ticker-item"><span class="ticker-value">~2031</span><span class="ticker-label">Projected CRQC window</span></div>
+      <div class="ticker-sep"></div>
+      <div class="ticker-item"><span class="ticker-value">60–80</span><span class="ticker-label">Curated delegates</span></div>
+      <div class="ticker-sep"></div>
+      <div class="ticker-item"><span class="ticker-value">1,000+</span><span class="ticker-label">Authority paper recipients</span></div>
+      <div class="ticker-sep"></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card fade-up">
+          <div class="stat-value">4M+</div>
+          <div class="stat-label">BTC in exposed P2PK addresses — vulnerable to quantum attack</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-value">$2.6T+</div>
+          <div class="stat-label">Crypto market value at stake from quantum vulnerability</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-value">~2031</div>
+          <div class="stat-label">Projected CRQC window — cryptographically relevant quantum computing</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-value">60–80</div>
+          <div class="stat-label">Invitation-only delegates — every attendee has a direct stake</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-num fade-up">02 — About</div>
+      <div class="section-title fade-up">What is Q-Day?</div>
+      <p class="section-desc fade-up">Q-Day is a curated, single-day gathering at the intersection of quantum computing research and blockchain infrastructure.</p>
+      <div class="about-grid">
+        <div class="about-highlight fade-up">
+          Convened by <span>Quantus Network</span>, the world's first quantum-native Layer 1 blockchain, and hosted at Network School in Johor Bahru.
+        </div>
+        <div class="about-details fade-up">
+          <div class="about-detail">
+            <div class="about-detail-label">Format</div>
+            <p>Single-day, invite-only programme with keynotes, panels, and structured networking sessions for 60–80 curated delegates.</p>
+          </div>
+          <div class="about-detail">
+            <div class="about-detail-label">Companion Paper</div>
+            <p>"The State of Quantum Computing: What Crypto Can't Afford to Ignore" — pre-distributed to 1,000+ researchers, investors, and press.</p>
+          </div>
+          <div class="about-detail">
+            <div class="about-detail-label">Built Quantum-Native</div>
+            <p>Quantus uses ML-KEM + ML-DSA at consensus — NIST 2024 post-quantum standards. Not migrated. Built from scratch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="audience" id="audience">
+    <div class="container">
+      <div class="section-num fade-up">03 — Attendees</div>
+      <div class="section-title fade-up">Who attends Q-Day?</div>
+      <p class="section-desc fade-up">Invitation-only. Every attendee has a direct stake in the outcome.</p>
+      <div class="audience-grid">
+        <div class="audience-card fade-up">
+          <div class="audience-icon">&#x1F52C;</div>
+          <h3>Quantum & PQC Researchers</h3>
+          <p>From leading institutions including NUS, NTU, and UTS Quantum Software & Information centre.</p>
+        </div>
+        <div class="audience-card fade-up">
+          <div class="audience-icon">&#x2699;</div>
+          <h3>Blockchain Core Developers</h3>
+          <p>L1/L2 architects and protocol engineers building the infrastructure layer.</p>
+        </div>
+        <div class="audience-card fade-up">
+          <div class="audience-icon">&#x1F4C8;</div>
+          <h3>Institutional Investors</h3>
+          <p>Quantum-focused funds and institutional capital allocators evaluating the post-quantum transition.</p>
+        </div>
+        <div class="audience-card fade-up">
+          <div class="audience-icon">&#x1F3DB;</div>
+          <h3>Policy & Standards Bodies</h3>
+          <p>Government initiatives and standards organisations shaping the regulatory landscape.</p>
+        </div>
+        <div class="audience-card fade-up">
+          <div class="audience-icon">&#x1F4F0;</div>
+          <h3>Media & Thought Leaders</h3>
+          <p>Crypto media, analysts, and thought leaders covering the quantum-crypto intersection.</p>
+        </div>
+        <div class="audience-card fade-up">
+          <div class="audience-icon">&#x1F512;</div>
+          <h3>Cryptographers & Security Engineers</h3>
+          <p>Post-quantum infrastructure founders and engineers building quantum-safe systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY ATTEND -->
+  <section class="why-attend" id="why">
+    <div class="container">
+      <div class="section-num fade-up">04 — Why Attend</div>
+      <div class="section-title fade-up">Why Q-Day matters.</div>
+      <p class="section-desc fade-up">Post-quantum blockchain infrastructure is one of the most underexposed categories in crypto.</p>
+      <div class="why-grid">
+        <div class="why-card fade-up">
+          <div class="why-num">01</div>
+          <h3>Research Visibility</h3>
+          <p>Your brand featured in the companion authority paper, pre-distributed to 1,000+ researchers, investors, and press before the event.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-num">02</div>
+          <h3>Practitioners Only</h3>
+          <p>Every attendee is hand-selected for relevance and influence. Researchers, capital allocators, and builders — not a general audience.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-num">03</div>
+          <h3>Network Access</h3>
+          <p>Curated introductions and structured networking with leaders at the forefront of emerging quantum-safe technology.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-num">04</div>
+          <h3>Category Leadership</h3>
+          <p>The post-quantum transition is still early. Position yourself as a category pioneer, not a late adopter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMME -->
+  <section class="programme" id="programme">
+    <div class="container">
+      <div class="section-num fade-up">05 — Programme</div>
+      <div class="section-title fade-up">What to expect.</div>
+      <p class="section-desc" style="color:#666;" >A focused, high-signal programme designed for depth over breadth.</p>
+      <div class="programme-list">
+        <div class="programme-item fade-up">
+          <div class="programme-time">
+            <div class="time-label">Session 01</div>
+            <div class="time-format">Keynote</div>
+          </div>
+          <div class="programme-content">
+            <div class="prog-type">Opening Address</div>
+            <h3>The Quantum Hardware Landscape & CRQC Timeline</h3>
+            <p>Where quantum computing hardware stands today, what the realistic timelines look like, and why the cryptographic community can't afford to wait.</p>
+          </div>
+        </div>
+        <div class="programme-item fade-up">
+          <div class="programme-time">
+            <div class="time-label">Session 02</div>
+            <div class="time-format">Panel</div>
+          </div>
+          <div class="programme-content">
+            <div class="prog-type">Panel Discussion</div>
+            <h3>Blockchain Quantum-Safety & the Investment Thesis</h3>
+            <p>How the investment landscape shifts when quantum readiness becomes a prerequisite, and what protocols are doing about it.</p>
+          </div>
+        </div>
+        <div class="programme-item fade-up">
+          <div class="programme-time">
+            <div class="time-label">Session 03</div>
+            <div class="time-format">Fireside Chat</div>
+          </div>
+          <div class="programme-content">
+            <div class="prog-type">Deep Dive</div>
+            <h3>Building Quantum-Native: The Quantus Architecture</h3>
+            <p>How Quantus Network approaches post-quantum blockchain design from first principles — ML-KEM, ML-DSA, and SLH-DSA at every layer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="register">
+    <div class="container">
+      <div class="cta-header fade-up">
+        <div class="section-num">06 — Get Involved</div>
+        <div class="section-title">Join Q-Day.</div>
+        <p>Three ways to participate in the post-quantum conversation.</p>
+      </div>
+      <div class="cta-grid">
+        <div class="cta-card fade-up">
+          <div class="cta-card-label">Attend</div>
+          <h3>Delegate Application</h3>
+          <p>Apply for one of 60–80 curated delegate positions. Every attendee is hand-selected for relevance and influence.</p>
+          <a href="mailto:jay@quantus.com?subject=Q-Day Delegate Application" class="btn-primary">Apply Now &rarr;</a>
+        </div>
+        <div class="cta-card fade-up">
+          <div class="cta-card-label">Speak</div>
+          <h3>Research Submission</h3>
+          <p>Submit your research for consideration. We're looking for original work at the intersection of quantum computing and cryptography.</p>
+          <a href="mailto:jay@quantus.com?subject=Q-Day Speaker Submission" class="btn-primary">Submit Research &rarr;</a>
+        </div>
+        <div class="cta-card fade-up">
+          <div class="cta-card-label">Partner</div>
+          <h3>Institutional Co-Hosting</h3>
+          <p>Position your organisation at the centre of the post-quantum conversation. Gold, Silver, and Community tiers available.</p>
+          <a href="mailto:jay@quantus.com?subject=Q-Day Partnership" class="btn-primary">Partner With Us &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">Quantus<span>.</span></a>
+          <p>The world's first quantum-native Layer 1 blockchain. Built with ML-KEM + ML-DSA at consensus.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Event</h4>
+            <a href="#about">About</a>
+            <a href="#audience">Attendees</a>
+            <a href="#why">Why Attend</a>
+            <a href="#programme">Programme</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:jay@quantus.com">jay@quantus.com</a>
+            <a href="#register">Register Interest</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Quantus Network. All rights reserved.</p>
+        <p>Hosted at <a href="#">Network School</a>, Johor Bahru</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('active');
+      });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
