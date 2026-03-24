@@ -340,46 +340,47 @@
     /* ====== STATS ====== */
     .stats {
       background: var(--white);
-      padding: 100px 0;
+      padding: 80px 0;
     }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: rgba(0,0,0,0.08);
-      border-radius: 8px;
-      overflow: hidden;
+    .stats-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
     }
-    .stat-card {
-      background: var(--cream);
-      padding: 40px 32px;
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 0 24px;
       position: relative;
-      overflow: hidden;
     }
-    .stat-card::before {
+    .stat-item + .stat-item::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--orange), var(--magenta), var(--purple));
-      opacity: 0;
-      transition: opacity 0.3s;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.12), transparent);
     }
-    .stat-card:hover::before { opacity: 1; }
     .stat-value {
-      font-size: clamp(32px, 4vw, 48px);
+      font-size: clamp(40px, 6vw, 72px);
       font-weight: 700;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--orange), var(--pink));
+      letter-spacing: -0.04em;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--orange), var(--magenta), var(--purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 12px;
     }
     .stat-label {
-      font-size: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
       color: var(--gray-600);
       line-height: 1.5;
+      max-width: 200px;
+      margin: 0 auto;
     }
 
     /* ====== ABOUT ====== */
@@ -748,7 +749,10 @@
         border-bottom: 1px solid rgba(0,0,0,0.06);
       }
       .nav-toggle { display: flex; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-row { flex-wrap: wrap; }
+      .stat-item { flex: 0 0 50%; margin-bottom: 32px; }
+      .stat-item:nth-child(odd)::before { display: none; }
+      .stat-item:nth-child(3)::before, .stat-item:nth-child(4)::before { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .audience-grid { grid-template-columns: 1fr; }
       .why-grid { grid-template-columns: 1fr; }
@@ -759,7 +763,8 @@
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
     @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item { flex: 0 0 100%; }
+      .stat-item + .stat-item::before { display: none; }
       .hero-buttons { flex-direction: column; }
       .hero-buttons a { text-align: center; justify-content: center; }
       section { padding: 80px 0; }
@@ -837,22 +842,22 @@
   <!-- STATS -->
   <section class="stats">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-card fade-up">
-          <div class="stat-value">4M+</div>
-          <div class="stat-label">BTC in exposed P2PK addresses — vulnerable to quantum attack</div>
+      <div class="stats-row fade-up">
+        <div class="stat-item">
+          <div class="stat-value" data-countup data-target="4" data-prefix="" data-suffix="M+">0</div>
+          <div class="stat-label">BTC exposed in P2PK addresses</div>
         </div>
-        <div class="stat-card fade-up">
-          <div class="stat-value">$2.6T+</div>
-          <div class="stat-label">Crypto market value at stake from quantum vulnerability</div>
+        <div class="stat-item">
+          <div class="stat-value" data-countup data-target="2.6" data-prefix="$" data-suffix="T+">0</div>
+          <div class="stat-label">Crypto market value at stake</div>
         </div>
-        <div class="stat-card fade-up">
-          <div class="stat-value">~2031</div>
-          <div class="stat-label">Projected CRQC window — cryptographically relevant quantum computing</div>
+        <div class="stat-item">
+          <div class="stat-value" data-countup data-target="2031" data-prefix="~" data-suffix="" data-whole>0</div>
+          <div class="stat-label">Projected CRQC window</div>
         </div>
-        <div class="stat-card fade-up">
-          <div class="stat-value">60–80</div>
-          <div class="stat-label">Invitation-only delegates — every attendee has a direct stake</div>
+        <div class="stat-item">
+          <div class="stat-value" data-countup data-target="80" data-prefix="" data-suffix="+" data-whole>0</div>
+          <div class="stat-label">Curated delegates invited</div>
         </div>
       </div>
     </div>
@@ -1089,6 +1094,45 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Count-up animation
+    const countupObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.dataset.target);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const isWhole = el.hasAttribute('data-whole');
+          const duration = 2000;
+          const startTime = performance.now();
+
+          const animate = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = target * eased;
+
+            if (isWhole) {
+              el.textContent = prefix + Math.round(current).toLocaleString() + suffix;
+            } else {
+              el.textContent = prefix + current.toFixed(1).replace(/\.0$/, '') + suffix;
+            }
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              el.textContent = prefix + (isWhole ? Math.round(target).toLocaleString() : target) + suffix;
+            }
+          };
+
+          requestAnimationFrame(animate);
+          countupObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('[data-countup]').forEach(el => countupObserver.observe(el));
   </script>
 
 </body>
